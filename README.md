@@ -1,7 +1,11 @@
 # aws-hashcat
 Hashcat v5.1.0 benchmarks on AWS instances. 
 
-Tested using `NVIDIA-SMI 418.87.01    Driver Version: 418.87.01    CUDA Version: 10.1` on Amazon Linux 2, deeplearning AMI v26.
+* `sudo nvidia-smi` output:
+  * `NVIDIA-SMI 418.87.01    Driver Version: 418.87.01    CUDA Version: 10.1` 
+* Deep Learning AMI (Amazon Linux 2) Version 26.0
+* In NVDIA-DOCKER
+  * Docker version 18.09.9-ce, build 039a7df
 
 
 |Instance Type  |on-demand price* |GPU                   |No. GPU's  |
