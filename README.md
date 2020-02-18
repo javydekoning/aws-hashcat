@@ -1,5 +1,5 @@
 # aws-hashcat
-Hashcat benchmarks on AWS instances. Files are in the format of `${INSTANCETYPE}.${HASHCATVERSION`.
+Hashcat benchmarks on AWS instances. Files are in the format of `${INSTANCETYPE}.${HASHCATVERSION}`.
 
 Benchmarks are run using:
 
