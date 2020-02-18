@@ -42,9 +42,11 @@ sudo shutdown 0
 
 ## Docker file
 
-The docker file used can be found in this repository:
+The docker files used can be found in this repository:
 
 [![Docker Hub](http://dockeri.co/image/javydekoning/hashcat)](https://hub.docker.com/r/javydekoning/hashcat/)
+
+Use tags `:latest` for OpenCL, `:cuda` for CUDA.
 
 [![](https://images.microbadger.com/badges/version/javydekoning/hashcat.svg)](https://microbadger.com/images/javydekoning/hashcat "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/image/javydekoning/hashcat.svg)](https://microbadger.com/images/javydekoning/hashcat "Get your own image badge on microbadger.com")
