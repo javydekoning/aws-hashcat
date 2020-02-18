@@ -1,19 +1,30 @@
 # aws-hashcat
-Hashcat v5.1.0 benchmarks on AWS instances. 
+Hashcat benchmarks on AWS instances. Files are in the format of `${INSTANCETYPE}.${HASHCATVERSION`.
 
-* `sudo nvidia-smi` output:
-  * `NVIDIA-SMI 418.87.01    Driver Version: 418.87.01    CUDA Version: 10.1` 
+Benchmarks are run using:
+
+* Hashcat compiled from source
 * Deep Learning AMI (Amazon Linux 2) Version 26.0
 * In NVDIA-DOCKER
   * Docker version 18.09.9-ce, build 039a7df
 
-
-|Instance Type  |on-demand price* |GPU                   |No. GPU's  |
-|---------------|-----------------|----------------------|-----------|
-|p3.16xlarge    |$24.48           |NVIDIA Tesla V100 SXM2|8          |
-
 ## Instructions
 
-Just launch latest Deeplearning AMI and run the following container (in benchmark mode): 
+Benchmarks in this repo are automatically created using the following user-data, you can alter this to your own use-case:
 
-`nvidia-docker run -it dizcza/docker-hashcat /usr/bin/hashcat -b`
+```
+#!/bin/bash
+aws ssm get-parameter --name 'gitkey' --with-decryption --region eu-west-1 | jq -r '.Parameter.Value' > ~/.ssh/id_rsa
+chmod 0700 ~/.ssh/id_rsa
+ssh -o StrictHostKeyChecking=no git@github.com
+git clone git@github.com:javydekoning/aws-hashcat.git
+nvidia-docker pull javydekoning/hashcat:latest
+export HCVER=$(nvidia-docker run javydekoning/hashcat:latest hashcat --version)
+export FILE=$(curl http://169.254.169.254/latest/meta-data/instance-type).$HCVER.txt
+cd aws-hashcat
+nvidia-docker run javydekoning/hashcat:latest hashcat -b > $FILE
+git add $FILE
+git commit -a -m "Adding $FILE"
+git push
+sudo shutdown 0
+```
