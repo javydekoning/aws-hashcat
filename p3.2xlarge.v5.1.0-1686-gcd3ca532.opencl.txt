@@ -118,4 +118,5 @@ Hashmode: 11300 - Bitcoin/Litecoin wallet.dat (Iterations: 200459)
 Speed.#1.........:    11373 H/s (73.54ms) @ Accel:2 Loops:1024 Thr:1024 Vec:1
 
 Started: Tue Feb 18 09:56:00 2020
-[2KStopped: Tue Feb 18 10:01:10 2020
+[2K
+Stopped: Tue Feb 18 10:01:10 2020
