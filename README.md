@@ -21,7 +21,7 @@ git clone git@github.com:javydekoning/aws-hashcat.git
 cd aws-hashcat
 # PULL IMAGES
 nvidia-docker pull javydekoning/hashcat:cuda
-nvidia-docker pull javydekoning/hashcat:lastest
+nvidia-docker pull javydekoning/hashcat:latest
 # RUN CUDA
 export HCVER=$(nvidia-docker run javydekoning/hashcat:cuda hashcat --version)
 export FILE=$(curl http://169.254.169.254/latest/meta-data/instance-type).$HCVER.cuda.txt
