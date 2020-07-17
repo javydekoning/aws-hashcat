@@ -21,7 +21,7 @@ git clone git@github.com:javydekoning/aws-hashcat.git
 cd aws-hashcat
 # PULL IMAGES
 nvidia-docker pull javydekoning/hashcat:cuda
-nvidia-docker pull javydekoning/hashcat:latest
+nvidia-docker pull javydekoning/hashcat:opencl
 # RUN CUDA
 export HCVER=$(nvidia-docker run javydekoning/hashcat:cuda hashcat --version)
 export FILE=$(curl http://169.254.169.254/latest/meta-data/instance-type).$HCVER.cuda.txt
@@ -30,9 +30,9 @@ git add $FILE
 git commit -a -m "Adding $FILE"
 git push
 #RUN OpenCL
-export HCVER=$(nvidia-docker run javydekoning/hashcat:latest hashcat --version)
+export HCVER=$(nvidia-docker run javydekoning/hashcat:opencl hashcat --version)
 export FILE=$(curl http://169.254.169.254/latest/meta-data/instance-type).$HCVER.opencl.txt
-nvidia-docker run javydekoning/hashcat:latest hashcat -b > $FILE
+nvidia-docker run javydekoning/hashcat:opencl hashcat -b > $FILE
 git add $FILE
 git commit -a -m "Adding $FILE"
 git push
@@ -46,7 +46,7 @@ The docker files used can be found in this repository:
 
 [![Docker Hub](http://dockeri.co/image/javydekoning/hashcat)](https://hub.docker.com/r/javydekoning/hashcat/)
 
-Use tags `:latest` for OpenCL, `:cuda` for CUDA.
+Use tags `:opencl` for OpenCL, `:cuda` for CUDA.
 
 [![](https://images.microbadger.com/badges/version/javydekoning/hashcat.svg)](https://microbadger.com/images/javydekoning/hashcat "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/image/javydekoning/hashcat.svg)](https://microbadger.com/images/javydekoning/hashcat "Get your own image badge on microbadger.com")
