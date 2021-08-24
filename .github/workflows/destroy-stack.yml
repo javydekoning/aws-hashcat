@@ -2,6 +2,7 @@ name: DestroyCdkStack
 
 on:
   repository_dispatch:
+    types: [destroy]
 
 jobs:
   destroy:

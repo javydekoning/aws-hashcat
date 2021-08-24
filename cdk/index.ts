@@ -22,8 +22,9 @@ class TempHashcatStack extends cdk.Stack{
     userData.addCommands(
       `curl -X POST -H "Accept: application/vnd.github.v3+json" `+
       `-H "Authorization: token ${process.env.GH_TOKEN}" `+
-      `https://api.github.com/repos/javydekoning/aws-hashcat/dispatches -d '{"event_type":"destroy"}`,
-      `sudo shutdown 0`
+      `https://api.github.com/repos/javydekoning/aws-hashcat/dispatches -d '{"event_type":"destroy"}' ` +
+      `2>&1 || true`,
+      `shutdown 0`
     )
 
     const role = new iam.Role(this, 'HashCatEc2Role', {
