@@ -22,6 +22,7 @@ jobs:
         node-version: '14'
     - run: |
         npm install -g typescript aws-cdk
+        npm i -D @types/node
         npm link typescript
     - run: |
         cd cdk

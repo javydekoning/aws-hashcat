@@ -49,5 +49,5 @@ class TempHashcatStack extends cdk.Stack{
   }
 }
 new TempHashcatStack(app, 'TempHashCatStack', {
-  env: {region: 'us-east-1', account: process.env.CDK_DEFAULT_ACCOUNT}
+  env: {region: process.env.AWS_DEFAULT_REGION , account: process.env.CDK_DEFAULT_ACCOUNT}
 });
