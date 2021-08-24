@@ -30,6 +30,7 @@ jobs:
         npm i
     - name: Deploy Stack
       run: |
+        cd cdk
         cdk deploy --require-approval never
       env:
         AWS_ACCESS_KEY_ID: '${{ secrets.AWS_ACCESS_KEY_ID }}'
