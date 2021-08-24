@@ -24,10 +24,6 @@ jobs:
       run: |
         cd cdk
         npm i
-    - name: Install package dependencies
-      run: |
-        cd cdk
-        npm i
     - name: Deploy Stack
       run: |
         cd cdk
