@@ -2,7 +2,7 @@ name: ScheduledPipeline
 
 on:
   push:
-    branches: [master]
+    branches: [master, ci]
   schedule:
     - cron: "0 9 * * *"
 
