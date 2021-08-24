@@ -1,36 +1,16 @@
 # aws-hashcat
+
 Hashcat benchmarks on AWS instances. Files are in the format of `${INSTANCETYPE}.${HASHCATVERSION}`.
 
 Benchmarks are run using:
 
 * Hashcat compiled from source
-* Deep Learning AMI (Amazon Linux 2) Version 36.0 **(community image)**
+* [AWS Deep Learning AMI GPU CUDA 11.3 (Amazon Linux 2)](https://aws.amazon.com/releasenotes/aws-deep-learning-ami-gpu-cuda-11-3-amazon-linux-2/)
 * In NVDIA-DOCKER
-  * Docker version 18.09.9-ce, build 039a7df
 
 ## Instructions
 
-Benchmarks in this repo are automatically created using the following user-data, you can alter this to your own use-case:
-
-```bash
-#!/bin/bash
-aws ssm get-parameter --name 'gitkey' --with-decryption --region us-east-1 | jq -r '.Parameter.Value' > ~/.ssh/id_rsa
-chmod 0700 ~/.ssh/id_rsa
-ssh -o StrictHostKeyChecking=no git@github.com
-git clone git@github.com:javydekoning/aws-hashcat.git
-cd aws-hashcat
-# PULL IMAGES
-nvidia-docker pull javydekoning/hashcat:cuda
-# RUN CUDA
-export HCVER=$(nvidia-docker run javydekoning/hashcat:cuda hashcat --version)
-export FILE=$(curl http://169.254.169.254/latest/meta-data/instance-type).$HCVER.cuda.txt
-nvidia-docker run javydekoning/hashcat:cuda hashcat -b > $FILE
-git add $FILE
-git commit -a -m "Adding $FILE"
-git push
-#TERMINATE
-sudo shutdown 0
-```
+Benchmarks in this repo are automatically run once a month. If you want to do this on your own, refer to the [userdata script](https://github.com/javydekoning/aws-hashcat/blob/master/cdk/userdata/bootstrap.sh)
 
 ## Docker file
 
