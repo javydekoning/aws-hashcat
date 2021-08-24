@@ -25,4 +25,5 @@ jobs:
         npm link typescript
     - run: |
         cd cdk
+        npm i
         cdk synth
