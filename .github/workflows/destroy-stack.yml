@@ -1,13 +1,11 @@
-name: ScheduledPipeline
+name: DestroyCdkStack
 
 on:
-  push:
-    branches: [master, ci]
-  schedule:
-    - cron: "0 9 1 * *" # Every first of the month at 9AM
+  repository_dispatch:
+    types: [destroy]
 
 jobs:
-  build:
+  destroy:
     runs-on: ubuntu-latest
     environment: 'us-east-1'
     steps:
@@ -24,14 +22,13 @@ jobs:
       run: |
         cd cdk
         npm i
-    - name: Deploy Stack
+    - name: CDK Destroy
       run: |
         cd cdk
-        cdk deploy --require-approval never
+        cdk destroy --force
       env:
         AWS_ACCESS_KEY_ID: '${{ secrets.AWS_ACCESS_KEY_ID }}'
         AWS_SECRET_ACCESS_KEY: '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
         AWS_DEFAULT_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
         CDK_DEFAULT_ACCOUNT: '${{ secrets.CDK_DEFAULT_ACCOUNT }}'
         CDK_DEFAULT_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
-        GH_TOKEN: '${{ secrets.GH_TOKEN }}'

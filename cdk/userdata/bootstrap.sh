@@ -13,5 +13,5 @@ nvidia-docker run javydekoning/hashcat:cuda hashcat -b > $FILE
 git add $FILE
 git commit -a -m "Adding $FILE"
 git push
-#TERMINATE
-sudo shutdown 0
+#Terminate delayed one minute
+shutdown +1

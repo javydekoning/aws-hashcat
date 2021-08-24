@@ -19,6 +19,13 @@ class TempHashcatStack extends cdk.Stack{
 
     const userData = ec2.UserData.forLinux()
     userData.addCommands(bootstrap)
+    userData.addCommands(
+      `curl -X POST -H "Accept: application/vnd.github.v3+json" `+
+      `-H "Authorization: token ${process.env.GH_TOKEN}" `+
+      `https://api.github.com/repos/javydekoning/aws-hashcat/dispatches -d '{"event_type":"destroy"}' ` +
+      `2>&1 || true`,
+      `shutdown 0`
+    )
 
     const role = new iam.Role(this, 'HashCatEc2Role', {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com')
@@ -49,5 +56,5 @@ class TempHashcatStack extends cdk.Stack{
   }
 }
 new TempHashcatStack(app, 'TempHashCatStack', {
-  env: {region: 'us-east-1', account: process.env.CDK_DEFAULT_ACCOUNT}
+  env: {region: process.env.AWS_DEFAULT_REGION , account: process.env.CDK_DEFAULT_ACCOUNT}
 });
