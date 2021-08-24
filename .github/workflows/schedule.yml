@@ -1,8 +1,6 @@
 name: ScheduledPipeline
 
 on:
-  push:
-    branches: [master, ci]
   schedule:
     - cron: "0 9 1 * *" # Every first of the month at 9AM
 
