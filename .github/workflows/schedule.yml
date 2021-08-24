@@ -1,0 +1,24 @@
+name: ScheduledPipeline
+
+on:
+  push:
+    branches: [master]
+  schedule:
+    - cron: "0 9 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      - AWS_ACCESS_KEY_ID: '${{ secrets.AWS_ACCESS_KEY_ID }}'
+      - AWS_SECRET_ACCESS_KEY: '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
+      - AWS_DEFAULT_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
+      - CDK_DEFAULT_ACCOUNT: '${{ secrets.CDK_DEFAULT_ACCOUNT }}'
+      - CDK_DEFAULT_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - run: npm install -g aws-cdk
+    - run: cdk synth
