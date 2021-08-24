@@ -20,7 +20,9 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
-    - run: npm install -g typescript aws-cdk
+    - run: |
+        npm install -g typescript aws-cdk
+        npm link typescript
     - run: |
         cd cdk
         cdk synth
