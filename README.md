@@ -5,7 +5,7 @@ Hashcat benchmarks on AWS instances. Files are in the format of `${INSTANCETYPE}
 Benchmarks are run using:
 
 * Hashcat compiled from source
-* [AWS Deep Learning AMI GPU CUDA 11.3 (Amazon Linux 2)](https://aws.amazon.com/releasenotes/aws-deep-learning-ami-gpu-cuda-11-3-amazon-linux-2/)
+* [AWS Deep Learning AMI GPU CUDA 11.5 (or later) ](https://aws.amazon.com/releasenotes/aws-deep-learning-ami-gpu-cuda-11-5-ubuntu-20-04/)
 * In NVDIA-DOCKER
 
 ## Instructions
@@ -18,7 +18,7 @@ The docker files used can be found in this repository:
 
 [![Docker Hub](http://dockeri.co/image/javydekoning/hashcat)](https://hub.docker.com/r/javydekoning/hashcat/)
 
-Use tags `:opencl` for OpenCL, `:cuda` for CUDA.
+Use tag `:cuda` for CUDA.
 
 [![](https://images.microbadger.com/badges/version/javydekoning/hashcat.svg)](https://microbadger.com/images/javydekoning/hashcat "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/image/javydekoning/hashcat.svg)](https://microbadger.com/images/javydekoning/hashcat "Get your own image badge on microbadger.com")
