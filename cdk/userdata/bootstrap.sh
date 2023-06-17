@@ -6,14 +6,14 @@ git clone git@github.com:javydekoning/aws-hashcat.git
 cd aws-hashcat
 
 # PULL IMAGES
-nvidia-docker pull javydekoning/hashcat:cuda
+nvidia-docker pull ghcr.io/javydekoning/hashcat:cuda
 
 # RUN CUDA
-export HCVER=$(nvidia-docker run javydekoning/hashcat:cuda hashcat --version)
+export HCVER=$(nvidia-docker run ghcr.io/javydekoning/hashcat:cuda hashcat --version | tail -n 1)
 export FILE=$(curl http://169.254.169.254/latest/meta-data/instance-type).$HCVER.cuda.txt
 nvidia-smi > $FILE
-nvidia-docker run javydekoning/hashcat:cuda hashcat -I >> $FILE
-nvidia-docker run javydekoning/hashcat:cuda hashcat -b >> $FILE
+nvidia-docker run ghcr.io/javydekoning/hashcat:cuda hashcat -I >> $FILE
+nvidia-docker run ghcr.io/javydekoning/hashcat:cuda hashcat -b >> $FILE
 
 # Add files to git repo, commit and push
 git add $FILE

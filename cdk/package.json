@@ -11,16 +11,16 @@
     "cdk": "cdk"
   },
   "devDependencies": {
-    "@types/node": "10.17.27",
-    "aws-cdk-lib": "^2.0.0",
-    "constructs": "^10.0.0",
-    "typescript": "~3.9.0",
-    "ts-node": "^9.0.0"
+    "@types/node": "20.3.1",
+    "aws-cdk-lib": "^2.84.0",
+    "constructs": "^10.2.52",
+    "typescript": "~5.1.3",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.0.0",
-    "@aws-cdk/aws-codestar-alpha": "2.0.0-alpha.1",
-    "constructs": "^10.0.0",
-    "source-map-support": "^0.5.16"
+    "aws-cdk-lib": "^2.84.0",
+    "@aws-cdk/aws-codestar-alpha": "2.84.0-alpha.0",
+    "constructs": "^10.2.52",
+    "source-map-support": "^0.5.21"
   }
 }
